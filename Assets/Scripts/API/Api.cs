@@ -57,6 +57,8 @@ public class Api : MonoBehaviour
         }
         else
         {
+            Debug.Log(JsonConvert.SerializeObject(body));
+
             request = UnityWebRequest.Put(url, JsonConvert.SerializeObject(body));
             request.method = "POST";
         }

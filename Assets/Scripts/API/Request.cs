@@ -8,15 +8,15 @@ namespace API.Models
     
     public class ModelRequest : Request
     {
-        public string objectUrl;
-        public string materialUrl;
-        public string imageUrl;
+        public byte[] objectUrl;
+        public byte[] materialId;
+        public byte[] imageUrl;
     }
 
     public class MaterialRequest : Request
     {
-        public string materialUrl;
-        public string imageUrl;
+        public byte[] imageUrl;
+        public byte[] materialUrl;
     }
 
     public class GetByIdRequest : Request
@@ -33,16 +33,16 @@ namespace API.Models
     public class ModelResponce : Responce
     {
         public int id;
-        public string objectUrl;
-        public int materialId;
-        public string imageUrl;
+        public byte[] objectUrl;
+        public byte[] materialId;
+        public byte[] imageUrl;
     }
 
     public class MaterialResponce : Responce
     {
         public int id;
-        public int materialId;
-        public string imageUrl;
+        public byte[] materialUrl;
+        public byte[] imageUrl;
     }
     #endregion
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,6 +14,7 @@ public class CastomizationControler : MonoBehaviour
 {
     [SerializeField] private Texture2D _icon1;
     [SerializeField] private Texture2D _icon2;
+    [SerializeField] private CastomizationList _list;
 
     [SerializeField] private RawImage _image;
     [SerializeField] private Canvas _canvas;
@@ -32,6 +34,7 @@ public class CastomizationControler : MonoBehaviour
 
         foreach(Customization customization in _customizations)
         {
+            customization.GetObject += SetObject;
             customization.OpenDatabase += OpenDataSystem;
         }
 
@@ -67,13 +70,20 @@ public class CastomizationControler : MonoBehaviour
         Action = Enable;
     }
 
+    private void SetObject(GameObject[] obj, int id)
+    {
+        _list.SetObj(obj, id);
+    }
+
     private void OpenDataSystem(Customization customization)
     {
-        if(_customization != customization)
+        _list.UpdateCustomization(customization.InputType);
+        if (_customization != customization)
         {
             _canvas.enabled = true;
+            _addData.SetInputType(customization.InputType);
+
             _customization = customization;
-            _addData.SetInputType(_customization.InputType);
         }
         else
         {
